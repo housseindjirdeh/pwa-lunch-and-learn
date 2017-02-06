@@ -1,6 +1,4 @@
-# React presentation
-
-[App deployed](http://aspiring-increase.surge.sh)
+# Built with Spectacle
 
 ## Created using
 
