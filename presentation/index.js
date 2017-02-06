@@ -1,29 +1,23 @@
 // Import React
 import React from "react";
-import TodoList from "./TodoList";
-// https://jsfiddle.net/69z2wepo/45085/
+
 // Import Spectacle Core tags
 import {
-  Appear,
   BlockQuote,
-  Cite,
-  Code,
-  CodePane,
   Deck,
-  Fill,
   Heading,
-  Image,
-  Layout,
-  Link,
   ListItem,
+  Appear,
   List,
-  Markdown,
   Quote,
   Slide,
-  Spectacle,
-  Text
+  Image,
+  Text,
+  Cite,
+  Spectacle
 } from "spectacle";
-import CodeSlide from 'spectacle-code-slide';
+
+import CodeSlide from "spectacle-code-slide";
 
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -31,175 +25,143 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  reactLogo: require("../assets/reactjs-logo.png"),
-  reactDOM: require("../assets/react-image.png"),
-  reactDevtools: require("../assets/react-devtools.png"),
-  reactNative: require("../assets/react-native.png"),
-  reactNativeBridge: require("../assets/react-native-bridge.png"),
-  reactNativeGif: require("../assets/react-native-hot-reload.gif"),
+  city: require("../assets/city.jpg"),
+  kat: require("../assets/kat.png"),
+  logo: require("../assets/rangle-logo.svg"),
+  markdown: require("../assets/markdown.png"),
+  xkcd: require("../assets/xkcd-installing.png"),
+  downasaur: require("../assets/downasaur.jpg"),
+  lighthouse: require("../assets/lighthouse-logo.png"),
+  lighthouseReport: require("../assets/lighthouse-report.gif"),
+  httpsMeme: require("../assets/https-buzz.jpg"),
+  noJS: require("../assets/no-js.png")
 };
 
 preloader(images);
 
 const theme = createTheme({
-  primary: "#039BE5",
-  secondary: "#607D8B"
+  primary: "white",
+  secondary: "#422d51",
+  tertiary: "#422e51",
+  quartenary: "#CECECE"
+}, {
+  primary: "Montserrat",
+  secondary: "Helvetica"
 });
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["zoom"]} bgColor="#333">
-            <Layout style={{alignItems: "center"}}>
-              <Fill>
-                <Heading size={1} caps lineHeight={1} textColor="#FFF">React</Heading>
-              </Fill>
-              <Fill>
-                <Image src={images.reactLogo.replace("/", "")} margin="0px auto 40px" height="293px"/>
-              </Fill>
-            </Layout>
-            <Text textSize="1.2em" textAlign="left" textColor="#FFF" margin="20px 0px 0px" bold>André Junges</Text>
-            <Text textSize="1.2em" textAlign="left" textColor="#FFF" margin="10px 0px 0px" bold>Eduardo Rost</Text>
-            <Text textSize="1.2em" textAlign="left" textColor="#FFF" margin="10px 0px 0px" bold>Fabiano Menegussi</Text>
-            <Text textSize="1.2em" textAlign="left" textColor="#FFF" margin="10px 0px 0px" bold>Renan Santos</Text>
-          </Slide>
-
-
-          <Slide transition={["slide"]} bgColor="#333">
-            <Heading size={3} textAlign="left" caps textColor="#FFF" textFont="#FFF">Why?</Heading>
-            <BlockQuote>
-              <Quote textColor="#FFF">We built React to solve one problem: <b>building large applications with data that changes over time.</b></Quote>
+      <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
+        <Slide transition={["fade"]} bgColor="primary">
+          <Image src={images.xkcd.replace("/", "")} margin="0px auto 40px" height="600px"/>
+           <Text textSize="0.3em" margin="20px 0px 0px" bold>XKCD / Installing</Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary">
+          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+            Progressive Web Applications
+          </Heading>
+          <Image src={images.logo} margin="40px auto 0px" height="20px"/>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+          <BlockQuote>
+            <Quote textSize="1.5em" textColor="primary">Uses modern web capabilities to provide a user experience similar to native apps</Quote>
+          </BlockQuote>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+          <Image src={images.lighthouse} margin="-70px auto 0px"/>
+        </Slide>
+        <Slide transition={["fade"]} bgImage={images.lighthouse.replace("/", "")} bgDarken={0.75}>
+          <BlockQuote>
+            <Quote textSize="1.5em" textColor="primary">
+              Lighthouse analyzes web apps and web pages, collecting modern performance metrics and insights on developer best practices.
+            </Quote>
+            <Cite textColor="quartenary">Google Chrome Lighthouse</Cite>
+          </BlockQuote>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
+          <Image src={images.lighthouseReport} margin="-70px auto 0px"/>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            Network connection is secure
+          </Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
+          <Image src={images.httpsMeme} />
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            Can work with poor/no connection
+          </Heading>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="#f5f5f5" textColor="secondary">
+          <Image src={images.downasaur}/>
+        </Slide>
+        <Slide transition={["fade"]} bgImage={images.downasaur.replace("/", "")} bgDarken={0.75}>
+          <BlockQuote>
+            <Quote textSize="1.5em" textColor="primary">
+                A service worker is a script that runs in the background of your browser when you view a webpage.
+            </Quote>
             </BlockQuote>
-          </Slide>
-
-          <Slide transition={["fade"]} bgColor="#333" textColor="primary">
-            <Heading size={3} textAlign="left" caps textColor="#FFF" textFont="primary">Basics</Heading>
-            <Layout>
-              <Fill>
-                <List>
-                  <Appear>
-                    <ListItem>
-                      <Text textColor="primary">M<Code style={{backgroundColor: "none"}} textSize="1.4em" textColor="green">V</Code>C</Text>
-                    </ListItem>
-                  </Appear>
-                  <Appear><ListItem>Declarative</ListItem></Appear>
-                  <Appear><ListItem>Virtual DOM</ListItem></Appear>
-                  <Appear><ListItem>One way data flow</ListItem></Appear>
-                </List>
-              </Fill>
-              <Fill>
-                <Appear>
-                  <Image src={images.reactDOM.replace("/", "")} margin="0px auto 40px" />
-                </Appear>
-                <Appear>
-                  <Text textColor="#FFF" textSize="1.8em">f(data) = View</Text>
-                </Appear>
-              </Fill>
-            </Layout>
-          </Slide>
-
-          <CodeSlide
-            transition={["fade"]}
-            lang="jsx"
-            textSize=".6em"
-            code={require("raw!../assets/todo-example")}
-            ranges={[
-              { loc: [0, 1], title: "Importing React" },
-              { loc: [2, 30] }, //TodoList Component
-              { loc: [4, 12], title: "Contructor Method" },
-              { loc: [13, 25], title: "Render Method" },
-              { loc: [14, 17] }, //Creating TodoItem by mapping through the list
-              { loc: [18, 24] },
-              { loc: [26, 29], title: "addEvent Method" },
-              { loc: [31, 36], title: "TodoItem Component" },
-              { loc: [37, 72] }, //NewTodoItem Component
-              { loc: [39, 47] }, //Contructor Method
-              { loc: [48, 51] }, //componentDidMount
-              { loc: [52, 63] }, //render
-              { loc: [64, 69] }, //onChange
-              { loc: [70, 75] }, //onSubmit
-              { loc: [77, 78], title: "Rendering component in the DOM" },
-            ]} />
-
-          <Slide transition={["fade"]} bgColor="#f1f1f1" textColor="primary" align="flex-start">
-            <TodoList />
-          </Slide>
-
-
-          <Slide transition={["fade"]} bgColor="#333" textColor="primary">
-            <Heading size={3} textAlign="left" caps textColor="#FFF" textFont="primary">Benefits</Heading>
-            <List>
-              <Appear><ListItem>JSX</ListItem></Appear>
-              <Appear><ListItem>Server side rendering</ListItem></Appear>
-              <Appear><ListItem>Hot Reload</ListItem></Appear>
-              <Appear><ListItem>Devtools</ListItem></Appear>
-            </List>
-          </Slide>
-
-          <Slide transition={["spin"]} bgColor="#333" textColor="primary">
-            <Heading size={3} textAlign="left" caps textColor="#FFF" textFont="primary">Devtools</Heading>
-            <Appear>
-              <Image src={images.reactDevtools.replace("/", "")} margin="40px 0 0 0" />
-            </Appear>
-          </Slide>
-
-          <Slide transition={["zoom"]} bgColor="#f1f1f1">
-            <Layout style={{alignItems: "center"}}>
-              <Fill>
-                <Heading size={1} caps lineHeight={1} textColor="#333">React Native</Heading>
-              </Fill>
-              <Fill>
-                <Image src={images.reactNative.replace("/", "")} margin="0px auto 40px" height="293px"/>
-              </Fill>
-            </Layout>
-          </Slide>
-
-          <Slide transition={["fade"]} bgColor="#f1f1f1" textColor="primary">
-            <Heading size={2} caps lineHeight={1} textColor="#333">React Native</Heading>
-            <Layout style={{alignItems: "center", margin: "40px -80px", justifyContent: "space-between"}}>
-              <Fill>
-                  <List>
-                    <Appear><ListItem>Free, open source</ListItem></Appear>
-                    <Appear><ListItem>Flexbox layout</ListItem></Appear>
-                    <Appear><ListItem>Same skill-set, similar APIs</ListItem></Appear>
-                    <Appear><ListItem>Share common code - (87%*)</ListItem></Appear>
-                    <Appear><ListItem>Native UI Components</ListItem></Appear>
-                    <Appear><ListItem>OTA Updates</ListItem></Appear>
-                  </List>
-              </Fill>
-              <Fill>
-                <Appear>
-                    <Image src={images.reactNativeBridge.replace("/", "")} margin="0px auto" height="180px"/>
-                </Appear>
-              </Fill>
-            </Layout>
-          </Slide>
-
-          <Slide transition={["spin"]} bgColor="#f1f1f1" textColor="primary">
-                <Text textColor="#333" textSize="2.2em">Hot Reloading</Text>
-                <Appear>
-                    <Image src={images.reactNativeGif.replace("/", "")} margin="50px auto" height="400px"/>
-                </Appear>
-          </Slide>
-
-          <Slide transition={["slide"]} bgColor="#333">
-            <BlockQuote>
-              <Quote textColor="#FFF">"Learn once write anywhere."</Quote>
-            </BlockQuote>
-          </Slide>
-
-        </Deck>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+          <Heading size={8} textColor="secondary" caps>Adding a Service Worker</Heading>
+          <List>
+            <Appear><ListItem textSize="1em">1. Add the file and write the logic yourself</ListItem></Appear>
+            <Appear><ListItem textSize="1em">2. Use Service Worker Precache</ListItem></Appear>
+          </List>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+          <BlockQuote>
+            <Quote textSize="1.5em" textColor="primary">sw-precache integrates with your build process</Quote>
+          </BlockQuote>
+        </Slide>
+        <CodeSlide
+          transition={["fade"]}
+          lang="jsx"
+          code={require("raw-loader!../assets/service-worker-add-example")}
+          ranges={[
+            { loc: [0, 1], title: "Adding" },
+            { loc: [2, 6] },
+            { loc: [7, 8] }
+          ]}
+        />
+        <CodeSlide
+          transition={["fade"]}
+          lang="jsx"
+          textSize=".6em"
+          code={require("raw-loader!../assets/service-worker-register-example")}
+          ranges={[
+            { loc: [0, 11], title: "Registering" },
+            { loc: [2, 3] },
+            { loc: [3, 7] }
+          ]}
+        />
+      <Slide transition={["fade"]} bgColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            Progressive enhancement
+          </Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="#f0db4f" textColor="secondary">
+          <Image src={images.noJS} margin="0px auto 0px" height="300px"/>
+        </Slide>
+        <CodeSlide
+          transition={["fade"]}
+          lang="jsx"
+          code={require("raw-loader!../assets/no-script")}
+          ranges={[
+            { loc: [0, 4], title: "<noscript>" }
+          ]}
+        />
+      </Deck>
       </Spectacle>
     );
   }

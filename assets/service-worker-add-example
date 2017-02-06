@@ -1,0 +1,8 @@
+npm install --save-dev sw-precache
+
+"scripts": {
+  ...
+  "precache": "sw-precache"
+}
+
+npm run precache
