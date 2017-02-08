@@ -14,6 +14,8 @@ import {
   Image,
   Text,
   Cite,
+  Layout,
+  Fill,
   Spectacle
 } from "spectacle";
 
@@ -31,16 +33,18 @@ require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
   logo: require("../assets/rangle-logo.svg"),
-  markdown: require("../assets/markdown.png"),
   xkcd: require("../assets/xkcd-installing.png"),
   downasaur: require("../assets/downasaur.jpg"),
   lighthouse: require("../assets/lighthouse-logo.png"),
   lighthouseReport: require("../assets/lighthouse-report.gif"),
   httpsMeme: require("../assets/https-buzz.jpg"),
-  noJS: require("../assets/no-js.png")
+  noJS: require("../assets/no-js.png"),
+  thinkingFace: require("../assets/thinking-face.png"),
+  appShellContent: require("../assets/app-shell-content.png"),
+  angular2hn: require("../assets/angular2-hn.png"),
+  citii: require("../assets/citii.png"),
+  endMeme: require("../assets/end-meme.jpg")
 };
 
 preloader(images);
@@ -126,7 +130,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <CodeSlide
           transition={["fade"]}
-          lang="jsx"
+          lang="js"
           code={require("raw-loader!../assets/service-worker-add-example")}
           ranges={[
             { loc: [0, 1], title: "Adding" },
@@ -136,8 +140,8 @@ export default class Presentation extends React.Component {
         />
         <CodeSlide
           transition={["fade"]}
-          lang="jsx"
-          textSize=".6em"
+          lang="js"
+          textSize=".7em"
           code={require("raw-loader!../assets/service-worker-register-example")}
           ranges={[
             { loc: [0, 11], title: "Registering" },
@@ -145,23 +149,142 @@ export default class Presentation extends React.Component {
             { loc: [3, 7] }
           ]}
         />
-      <Slide transition={["fade"]} bgColor="secondary">
+        <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+          <Image src={images.thinkingFace} height="200px"/>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary">
           <Heading size={1} fit caps lineHeight={1} textColor="primary">
-            Progressive enhancement
+            1. Application Shell
           </Heading>
         </Slide>
-        <Slide transition={["fade"]} bgColor="#f0db4f" textColor="secondary">
-          <Image src={images.noJS} margin="0px auto 0px" height="300px"/>
+        <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+          <Image src={images.appShellContent} height="600px"/>
         </Slide>
         <CodeSlide
           transition={["fade"]}
-          lang="jsx"
-          code={require("raw-loader!../assets/no-script")}
+          lang="js"
+          textSize=".75em"
+          code={require("raw-loader!../assets/service-worker-add-example-with-config")}
           ranges={[
-            { loc: [0, 4], title: "<noscript>" }
+            { loc: [0, 5], title: "WITH CONFIG" },
+            { loc: [2, 3] }
           ]}
         />
-      </Deck>
+        <CodeSlide
+          transition={["fade"]}
+          lang="js"
+          code={require("raw-loader!../assets/sw-precache-config")}
+          ranges={[
+            { loc: [0, 13], title: "CONFIG" },
+            { loc: [1, 8] },
+            { loc: [8, 9] },
+            { loc: [9, 10] },
+            { loc: [10, 11] }
+          ]}
+        />
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            2. Dynamic Content
+          </Heading>
+        </Slide>
+        <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+          <Heading size={8} textColor="primary" caps>Dynamic Caching</Heading>
+          <List>
+            <Appear><ListItem textSize="1em">1. Write the logic yourself</ListItem></Appear>
+            <Appear><ListItem textSize="1em">2. Import Service Worker Toolbox</ListItem></Appear>
+            <Appear><ListItem textSize="1em">3. Add runtimeCaching</ListItem></Appear>
+          </List>
+        </Slide>
+        <CodeSlide
+          transition={["fade"]}
+          lang="js"
+          textSize=".8em"
+          code={require("raw-loader!../assets/sw-precache-config-runtime-caching")}
+          ranges={[
+            { loc: [0, 0], title: "RUNTIME CACHING" },
+            { loc: [11, 15] }
+          ]}
+        />
+        <Slide transition={["slide"]} bgColor="secondary">
+          <Heading size={1} fit caps lineHeight={1} textColor="primary">
+            Add to Homescreen
+          </Heading>
+        </Slide>
+        <CodeSlide
+          transition={["fade"]}
+          lang="js"
+          textSize=".8em"
+          code={'<link rel="manifest" href="/manifest.json">'}
+          ranges={[
+            { loc: [0, 1], title: "WEB APP MANIFEST" }
+          ]}
+        />
+        <CodeSlide
+          transition={["fade"]}
+          lang="js"
+          textSize=".8em"
+          code={require("raw-loader!../assets/manifest")}
+          ranges={[
+            { loc: [0, 22], title: "WEB APP MANIFEST" },
+            { loc: [1, 3] },
+            { loc: [3, 15] },
+            { loc: [15, 19] },
+            { loc: [19, 20] }
+          ]}
+        />
+        <Slide transition={["fade"]} bgColor="primary">
+            <Layout>
+              <Fill>
+                <Heading textAlign="center" size={6} textColor="secondary" caps>Safari on iOS</Heading>
+                <Text textAlign="center" textSize="1em">Can install to homescreen</Text>
+              </Fill>
+              <Fill>
+                <Heading textAlign="center" size={6} textColor="secondary" caps>Chromium on Android</Heading>
+                <Text textAlign="center" textSize="1em">Can install to homescreen</Text>
+                <Text textAlign="center" textSize="1em">Splash Screen</Text>
+                <Text textAlign="center" textSize="1em">App install banner with repeat visits</Text>
+              </Fill>
+            </Layout>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={1} fit caps lineHeight={1} textColor="primary">
+              Progressive enhancement
+            </Heading>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="#f0db4f" textColor="secondary">
+            <Image src={images.noJS} margin="0px auto 0px" height="300px"/>
+          </Slide>
+          <CodeSlide
+            transition={["fade"]}
+            lang="js"
+            code={require("raw-loader!../assets/no-script")}
+            ranges={[
+              { loc: [0, 4], title: "<noscript>" }
+            ]}
+          />
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <BlockQuote>
+              <Quote textSize="1.5em" textColor="primary">SWPrecacheWebpackPlugin</Quote>
+            </BlockQuote>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+            <Text textColor="secondary" textAlign="center" textSize="1em">Progressive Angular</Text>
+            <Image src={images.angular2hn} height="600px"/>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="#333" textColor="primary">
+            <Text textColor="primary" textAlign="center" textSize="1em">Progressive React</Text>
+            <Image src={images.citii} height="700px" margin="-20px auto 0px"/>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <BlockQuote>
+              <Quote textSize="1.5em" textColor="primary">create-react-pwa</Quote>
+              <Cite textColor="quartenary">jeffposnick</Cite>
+            </BlockQuote>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
+            <Image src={images.endMeme}/>
+          </Slide>
+        </Deck>
       </Spectacle>
     );
   }
