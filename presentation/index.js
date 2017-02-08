@@ -46,6 +46,7 @@ const images = {
   iosApp: require("../assets/ios-app.gif"),
   angular2hn: require("../assets/angular2-hn.png"),
   citii: require("../assets/citii.png"),
+  emptyPhone: require("../assets/empty-phone.png"),
   endMeme: require("../assets/end-meme.jpg")
 };
 
@@ -199,6 +200,25 @@ export default class Presentation extends React.Component {
             ]}
           />
           <Slide transition={["slide"]} bgColor="secondary">
+            <Appear>
+              <Heading size={6} caps lineHeight={1} textColor="primary">
+                App Shell
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} caps lineHeight={1} textColor="primary">
+                +<br/>
+                Dynamic caching
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} caps lineHeight={1} textColor="primary">
+                =<br/>
+                Offline Support
+              </Heading>
+            </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} fit caps lineHeight={1} textColor="primary">
               Add to Homescreen
             </Heading>
@@ -213,7 +233,7 @@ export default class Presentation extends React.Component {
           />
           <CodeSlide
             transition={["fade"]}
-            lang="json"
+            lang="js"
             code={require("raw-loader!../assets/manifest")}
             ranges={[
               { loc: [0, 22], title: "WEB APP MANIFEST" },
@@ -287,6 +307,10 @@ export default class Presentation extends React.Component {
           <Slide transition={["slide"]} bgColor="#333" textColor="primary">
             <Text textColor="primary" textAlign="center" textSize="1em">React</Text>
             <Image src={images.citii} height="700px" margin="-20px auto 0px"/>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <Text textColor="primary" textAlign="center" textSize="1em">Whatever you like</Text>
+            <Image src={images.emptyPhone} height="700px" margin="-20px auto 0px"/>
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
             <BlockQuote>
