@@ -43,6 +43,7 @@ const images = {
   androidInstallBanner: require("../assets/install-to-home-screen.png"),
   androidInstalled: require("../assets/android-installed.png"),
   androidSplash: require("../assets/android-splash.png"),
+  androidApp: require("../assets/android-app.png"),
   iosApp: require("../assets/ios-app.gif"),
   angular2hn: require("../assets/angular2-hn.png"),
   citii: require("../assets/citii.png"),
@@ -66,12 +67,12 @@ export default class Presentation extends React.Component {
   render() {
     return (
       <Spectacle theme={theme}>
-        <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
-          <Slide transition={["fade"]} bgColor="primary">
+        <Deck transitionDuration={500} theme={theme}>
+          <Slide transition={["slide"]} bgColor="primary">
             <Image src={images.xkcd.replace("/", "")} margin="0px auto 40px" height="600px"/>
              <Text textSize="0.3em" margin="20px 0px 0px" bold>XKCD / Installing</Text>
           </Slide>
-          <Slide transition={["fade"]} bgColor="primary">
+          <Slide transition={["slide"]} bgColor="primary">
             <Heading size={1} fit caps lineHeight={1} textColor="secondary">
               Progressive Web Applications
             </Heading>
@@ -226,7 +227,7 @@ export default class Presentation extends React.Component {
             <Heading size={8} textColor="primary" caps>Feed Caching</Heading>
             <List>
               <Appear><ListItem textSize="1em">1. Import Service Worker Toolbox</ListItem></Appear>
-              <Appear><ListItem textSize="1em">2. Use Service Worker Precache</ListItem></Appear>
+              <Appear><ListItem textSize="1em">2. Use runtimeCaching</ListItem></Appear>
             </List>
           </Slide>
           <CodeSlide
@@ -294,7 +295,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={4} caps lineHeight={1} textColor="primary">
-              Can I haz?
+              I can haz?
             </Heading>
             <Appear>
               <Heading size={8} lineHeight={1} textColor="primary">
@@ -315,6 +316,25 @@ export default class Presentation extends React.Component {
                 <br/>
                 <br/>
                 Chrome + Firefox + Android
+              </Heading>
+            </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={4} caps lineHeight={1} textColor="primary">
+              Moar?!
+            </Heading>
+            <Appear>
+              <Heading size={8} lineHeight={1} textColor="primary">
+                <br/>
+                <br/>
+                Push Notifications
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={8} lineHeight={1} textColor="primary">
+                <br/>
+                <br/>
+                Background Sync
               </Heading>
             </Appear>
           </Slide>
@@ -361,6 +381,10 @@ export default class Presentation extends React.Component {
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
             <Text textAlign="center" textColor="primary" textSize="1em">Splash Screen</Text>
             <Image src={images.androidSplash} height="700px"/>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <Text textAlign="center" textColor="primary" textSize="1em">App Loaded</Text>
+            <Image src={images.androidApp} height="700px"/>
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
             <Heading size={5} textColor="primary" caps>Safari on iOS</Heading>
@@ -412,7 +436,7 @@ export default class Presentation extends React.Component {
           />
           <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} caps lineHeight={1} textColor="primary">
-              Frameworks?
+              Tools?
             </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
