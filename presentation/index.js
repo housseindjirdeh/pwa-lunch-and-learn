@@ -79,7 +79,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
             <BlockQuote>
-              <Quote textSize="1.5em" textColor="primary">Uses modern web capabilities to provide a user experience similar to native apps</Quote>
+              <Quote textSize="1.5em" textColor="primary">PWAs use modern web capabilities to provide a user experience similar to native apps</Quote>
             </BlockQuote>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
@@ -88,9 +88,8 @@ export default class Presentation extends React.Component {
           <Slide transition={["fade"]} bgImage={images.lighthouse.replace("/", "")} bgDarken={0.75}>
             <BlockQuote>
               <Quote textSize="1.5em" textColor="primary">
-                Lighthouse analyzes web apps and web pages, collecting modern performance metrics and insights on developer best practices.
+                Lighthouse is an open-source auditing tool that you can use to test and improve your webpage
               </Quote>
-              <Cite textColor="quartenary">Google Chrome Lighthouse</Cite>
             </BlockQuote>
           </Slide>
           <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
@@ -110,6 +109,11 @@ export default class Presentation extends React.Component {
             </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="#f5f5f5" textColor="secondary">
+            <Appear>
+              <Heading size={1} fit caps lineHeight={1} textColor="#545454">
+                Downasaur
+              </Heading>
+            </Appear>
             <Image src={images.downasaur}/>
           </Slide>
           <Slide transition={["fade"]} bgImage={images.downasaur.replace("/", "")} bgDarken={0.75}>
@@ -119,8 +123,8 @@ export default class Presentation extends React.Component {
               </Quote>
               </BlockQuote>
           </Slide>
-          <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
-            <Heading size={8} textColor="secondary" caps>Adding a Service Worker</Heading>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <Heading size={8} textColor="primary" caps>Adding a Service Worker</Heading>
             <List>
               <Appear><ListItem textSize="1em">1. Add the file and write the logic yourself</ListItem></Appear>
               <Appear><ListItem textSize="1em">2. Use Service Worker Precache</ListItem></Appear>
@@ -143,11 +147,12 @@ export default class Presentation extends React.Component {
           />
           <CodeSlide
             transition={["fade"]}
-            lang="js"
+            lang="html"
             textSize=".7em"
             code={require("raw-loader!../assets/service-worker-register-example")}
             ranges={[
               { loc: [0, 11], title: "Registering" },
+              { loc: [1, 2] },
               { loc: [2, 3] },
               { loc: [3, 7] }
             ]}
@@ -157,7 +162,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} fit caps lineHeight={1} textColor="primary">
-              1. Application Shell
+              Application Shell
             </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
@@ -169,8 +174,8 @@ export default class Presentation extends React.Component {
             textSize=".8em"
             code={require("raw-loader!../assets/service-worker-add-example-with-config")}
             ranges={[
-              { loc: [0, 5], title: "WITH CONFIG" },
-              { loc: [2, 3] }
+              { loc: [0, 1], title: "WITH CONFIG" },
+              { loc: [4, 5] }
             ]}
           />
           <CodeSlide
@@ -178,45 +183,145 @@ export default class Presentation extends React.Component {
             lang="js"
             code={require("raw-loader!../assets/sw-precache-config")}
             ranges={[
-              { loc: [0, 13], title: "CONFIG" },
-              { loc: [1, 8] },
-              { loc: [8, 9] },
-              { loc: [9, 10] },
-              { loc: [10, 11] }
+              { loc: [0, 1], title: "CONFIG" },
+              { loc: [2, 3] },
+              { loc: [3, 10], note: "Files to be precached" },
+              { loc: [10, 11], note: "Where to create the service worker" },
+              { loc: [11, 12], note: "Strips string from file paths" },
+              { loc: [12, 13], note: "File that serves as fallback for failed URLs (App Shell) "}
+            ]}
+          />
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={1} caps lineHeight={1} textColor="primary">
+              Manually?
+            </Heading>
+          </Slide>
+          <CodeSlide
+            transition={["fade"]}
+            lang="js"
+            code={require("raw-loader!../assets/ci-setup")}
+            ranges={[
+              { loc: [0, 1], title: "CI" },
+              { loc: [2, 3] },
+              { loc: [4, 5] },
+              { loc: [6, 7] }
+            ]}
+          />
+          <CodeSlide
+            transition={["fade"]}
+            lang="js"
+            textSize=".7em"
+            code={require("raw-loader!../assets/service-worker-add-example-with-config-in-build")}
+            ranges={[
+              { loc: [0, 1], title: "WITH CONFIG" },
+              { loc: [4, 5] }
             ]}
           />
           <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} fit caps lineHeight={1} textColor="primary">
-              2. Dynamic Content
+              Dynamic Content
             </Heading>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <Heading size={8} textColor="primary" caps>Feed Caching</Heading>
+            <List>
+              <Appear><ListItem textSize="1em">1. Import Service Worker Toolbox</ListItem></Appear>
+              <Appear><ListItem textSize="1em">2. Use Service Worker Precache</ListItem></Appear>
+            </List>
           </Slide>
           <CodeSlide
             transition={["fade"]}
             lang="js"
             code={require("raw-loader!../assets/sw-precache-config-runtime-caching")}
             ranges={[
-              { loc: [0, 0], title: "RUNTIME CACHING" },
-              { loc: [11, 15] }
+              { loc: [0, 1], title: "RUNTIME CACHING" },
+              { loc: [13, 17] }
             ]}
           />
           <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={2} caps lineHeight={1} textColor="primary">
+              Handlers
+            </Heading>
             <Appear>
-              <Heading size={6} caps lineHeight={1} textColor="primary">
+              <Heading size={6} lineHeight={1} textColor="primary">
+                <br/>
+                networkFirst
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} lineHeight={1} textColor="primary">
+                <br/>
+                cacheFirst
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} lineHeight={1} textColor="primary">
+                <br/>
+                fastest
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} lineHeight={1} textColor="primary">
+                <br/>
+                cacheOnly
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={6} lineHeight={1} textColor="primary">
+                <br/>
+                networkOnly
+              </Heading>
+            </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Appear>
+              <Heading size={4} caps lineHeight={1} textColor="primary">
                 App Shell
               </Heading>
             </Appear>
             <Appear>
-              <Heading size={6} caps lineHeight={1} textColor="primary">
+              <Heading size={4} caps lineHeight={1} textColor="primary">
                 +<br/>
                 Dynamic caching
               </Heading>
             </Appear>
             <Appear>
-              <Heading size={6} caps lineHeight={1} textColor="primary">
+              <Heading size={4} caps lineHeight={1} textColor="primary">
                 =<br/>
                 Offline Support
               </Heading>
             </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={4} caps lineHeight={1} textColor="primary">
+              Can I haz?
+            </Heading>
+            <Appear>
+              <Heading size={8} lineHeight={1} textColor="primary">
+                <br/>
+                <br/>
+                Safari: Nope (under consideration)
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={8} lineHeight={1} textColor="primary">
+                <br/>
+                <br/>
+                Edge: Development
+              </Heading>
+            </Appear>
+            <Appear>
+              <Heading size={8} lineHeight={1} textColor="primary">
+                <br/>
+                <br/>
+                Chrome + Firefox + Android
+              </Heading>
+            </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
+            <BlockQuote>
+              <Quote textSize="1.5em" textColor="primary">SWPrecacheWebpackPlugin</Quote>
+            </BlockQuote>
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} fit caps lineHeight={1} textColor="primary">
@@ -236,15 +341,14 @@ export default class Presentation extends React.Component {
             lang="js"
             code={require("raw-loader!../assets/manifest")}
             ranges={[
-              { loc: [0, 22], title: "WEB APP MANIFEST" },
-              { loc: [1, 3] },
-              { loc: [3, 15] },
-              { loc: [15, 19] },
-              { loc: [19, 20] }
+              { loc: [0, 1], title: "WEB APP MANIFEST" },
+              { loc: [3, 5] },
+              { loc: [5, 17] },
+              { loc: [17, 21] }
             ]}
           />
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
-            <Heading size={5} textColor="primary" caps>Chromium on Android</Heading>
+            <Heading size={5} textColor="primary" caps>Chrome on Android</Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
             <Text textAlign="center" textColor="primary" textSize="1em">App install banner with repeat visits</Text>
@@ -280,6 +384,17 @@ export default class Presentation extends React.Component {
             <Image src={images.iosApp} height="700px"/>
           </Slide>
           <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={1} caps lineHeight={1} textColor="primary">
+              Icons?
+            </Heading>
+            <br />
+            <Appear>
+              <Text fit caps lineHeight={1} textColor="primary">
+                REALFAVICONGENERATOR
+              </Text>
+            </Appear>
+          </Slide>
+          <Slide transition={["slide"]} bgColor="secondary">
             <Heading size={1} fit caps lineHeight={1} textColor="primary">
               Progressive enhancement
             </Heading>
@@ -295,10 +410,10 @@ export default class Presentation extends React.Component {
               { loc: [0, 4], title: "<noscript>" }
             ]}
           />
-          <Slide transition={["slide"]} bgColor="secondary" textColor="primary">
-            <BlockQuote>
-              <Quote textSize="1.5em" textColor="primary">SWPrecacheWebpackPlugin</Quote>
-            </BlockQuote>
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={1} caps lineHeight={1} textColor="primary">
+              Frameworks?
+            </Heading>
           </Slide>
           <Slide transition={["slide"]} bgColor="primary" textColor="secondary">
             <Text textColor="secondary" textAlign="center" textSize="1em">Angular</Text>

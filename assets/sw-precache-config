@@ -1,3 +1,5 @@
+// sw-precache-config.js
+
 module.exports = {
   staticFileGlobs: [
     'dist/**.html',

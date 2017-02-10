@@ -1,0 +1,6 @@
+//package.json
+
+"scripts": {
+  ...
+  "build": "{build} && sw-precache --config=sw-precache-config.js"
+}

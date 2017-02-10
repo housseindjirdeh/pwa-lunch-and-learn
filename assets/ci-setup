@@ -1,0 +1,7 @@
+INSTALL SCRIPT
+
+BUILD STEP
+
+npm run precache
+
+DEPLOY

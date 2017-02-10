@@ -1,3 +1,5 @@
+//manifest.json
+
 {
 "name": "Angular 2 HN",
 "short_name": "Angular 2 HN",
@@ -16,6 +18,5 @@
 "theme_color": "#b92b27",
 "background_color": "#ffffff",
 "display": "standalone",
-"orientation": "portrait",
-"start_url": "./?utm_source=web_app_manifest"
+"orientation": "portrait"
 }

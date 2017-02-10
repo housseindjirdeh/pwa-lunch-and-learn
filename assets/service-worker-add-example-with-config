@@ -1,3 +1,5 @@
+//package.json
+
 "scripts": {
   ...
   "precache": "sw-precache --config=sw-precache-config.js"
